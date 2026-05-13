@@ -1,0 +1,120 @@
+/* Widok bazowy (> 1000px) */
+.div-containter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.div1 {
+    grid-column: span 3;
+    height: 150px;
+    background: orange;
+    position: relative;
+}
+
+.div11 {
+    width: 40px;
+    height: 40px;
+    background: red;
+    position: absolute;
+    right: 20px; /* Po prawej na desktopie */
+    bottom: 20px;
+}
+
+.div2 {
+    grid-column: span 1;
+    height: 300px;
+    background: #7986CB;
+}
+
+.div3 { 
+    grid-column: span 2;
+    background: #AED581; 
+    display: flex;
+    flex-direction: column;
+    padding: 20px; 
+    gap: 10px; 
+}
+
+.div31, .div32 {
+    height: 60px;
+    background: #03A9F4;
+    width: 100%;
+}
+
+.div-pink {
+    display: none; /* Ukryty na dużych i średnich ekranach */
+    height: 150px;
+    background: pink;
+}
+
+.div4, .div5, .div6 {
+    height: 50px;
+    background: gray; 
+}
+
+/* Średni ekran (1000px > width > 600px) */
+@media screen and (max-width: 1000px) {
+    .div11 {
+        left: 20px; /* Czerwony przeskakuje na lewo */
+        right: auto;
+        top: 20px;
+    }
+  
+    .div2 {
+        grid-column: span 3;
+        height: 80px; /* Wąski pasek pod żółtym */
+    }
+
+    .div3 { 
+        grid-column: span 3; 
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .div31, .div32 {
+        width: 40%;
+        height: 100px;
+    }
+}
+
+/* Mały ekran (< 600px) */
+@media screen and (max-width: 600px) {
+    .div-containter {
+        grid-template-columns: 1fr;
+    }
+  
+    .div1, .div2, .div3, .div4, .div5, .div6, .div-pink {
+        grid-column: span 1;
+    }
+  
+    .div11 {
+        left: 50%; /* Czerwony na środek */
+        right: auto;
+        transform: translateX(-50%);
+    }
+
+    .div-pink {
+        display: block; /* Pokazuje różowy prostokąt */
+    }
+  
+    .div3 { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        height: 150px;
+        flex-direction: unset; /* Wyłączamy flexa na rzecz grida */
+    }
+
+    .div31 {
+        grid-column: 1;
+        align-self: start;
+        width: 80%;
+    }
+
+    .div32 {
+        grid-column: 2;
+        align-self: end;
+        width: 80%;
+    }
+}
